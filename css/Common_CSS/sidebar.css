@@ -1,0 +1,284 @@
+/*----------Sidebar----------*/
+.sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #FFC222; /* The golden yellow from the image */
+    overflow-x: hidden;
+    padding-top: 20px;
+    color: #333; /* Darker text for contrast */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    transition: 0.5s; /* Add transition for smooth opening/closing */
+}
+
+.sidenav .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+.sidenav .profile-pic {
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 40px;
+    color: #f5b921; /* Icon color matching background */
+}
+
+.sidenav .profile-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff; /* White text for the name */
+}
+
+.sidenav a {
+    padding: 12px 8px 12px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    color: #fff; /* White text for menu items */
+    display: block;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.sidenav a i {
+    margin-right: 10px;
+    width: 20px; /* Give icons a fixed width for alignment */
+    text-align: center;
+}
+
+.sidenav a:hover, .sidenav .dropdown-btn:hover {
+    background-color: #f5b921;; /* Slightly darker yellow on hover */
+    color: #fff;
+}
+
+.sidenav .active {
+    background-color: #fff; /* White background for active item */
+    color: #f5b921; /* Golden yellow text for active item */
+    border-radius: 5px;
+    margin: 0 10px;
+    padding-left: 10px; /* Adjust padding for rounded corners */
+}
+
+/* Dropdown styling */
+.dropdown-content {
+    display: none;
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent white for dropdown */
+    padding-left: 30px;
+}
+
+.dropdown-content a {
+    color: #fff;
+    padding: 8px 0px 8px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 15px;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.dropdown-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.dropdown-btn .fa-caret-down {
+    margin-right: 10px;
+    transition: transform 0.3s;
+}
+
+.dropdown-btn.active .fa-caret-down {
+    transform: rotate(180deg);
+}
+
+/* Close button for mobile sidebar */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    display: none; /* Hidden by default, shown on mobile */
+}
+
+/*----------End of sidebar----------*/
+
+.main-content {
+    margin-left: 250px; /* Default margin for desktop */
+    padding: 20px;
+    transition: margin-left 0.5s; /* Smooth transition for main content */
+}
+
+/* Hamburger menu icon for mobile */
+.openbtn {
+    font-size: 30px;
+    cursor: pointer;
+    background-color: #FFC222;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    display: none; /* Hidden by default, shown on mobile */
+    position: fixed; /* Keep it visible when scrolling */
+    top: 10px;
+    left: 10px;
+    z-index: 2; /* Above other content */
+    border-radius: 5px;
+}
+
+.openbtn:hover {
+    background-color: #f5b921;
+}
+
+/* --- Media Queries for Sidebar and main content --- */
+@media screen and (max-width: 768px) {
+    .sidenav {
+        width: 0; /* Collapse sidebar by default on tablets */
+        padding-top: 60px; /* Adjust padding for close button */
+    }
+
+    .sidenav .closebtn {
+        display: block; /* Show the close button */
+    }
+
+    .main-content {
+        margin-left: 0; /* No margin on main content by default */
+    }
+
+    .openbtn {
+        display: block; /* Show the hamburger menu icon */
+    }
+}
+
+/* Logout Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto; /* For older browsers, flexbox handles centering */
+    padding: 30px;
+    border: 1px solid #888;
+    width: 90%; /* Responsive width */
+    max-width: 400px; /* Maximum width */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-align: center;
+    position: relative;
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+.modal-content h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.modal-content p {
+    margin-bottom: 30px;
+    font-size: 16px;
+    color: #555;
+}
+
+.modal-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-actions .cancel {
+    background-color: #ccc;
+    color: #333;
+}
+
+.modal-actions .cancel:hover {
+    background-color: #bbb;
+}
+
+.modal-actions .logout {
+    background-color: #dc2626; /* Match your save button color */
+    color: white;
+}
+
+.modal-actions .logout:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
+
+/* Ensure modal is hidden by default and shown with JavaScript */
+.modal.show {
+    display: flex; /* Use flex to center content */
+}
+
+/* Responsive adjustments for modal */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+    .modal-content h2 {
+        font-size: 20px;
+    }
+    .modal-content p {
+        font-size: 14px;
+    }
+    .modal-actions button {
+        padding: 8px 15px;
+        font-size: 14px;
+        margin: 0 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 15px;
+    }
+    .close-button {
+        font-size: 24px;
+        top: 5px;
+        right: 10px;
+    }
+}

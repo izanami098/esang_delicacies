@@ -1,0 +1,219 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+.main-container {
+    margin-left: 250px; /* Default for desktop with sidebar */
+    padding: 20px;
+}
+
+.summary-cards {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+.card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    flex: 1;
+    min-width: 200px;
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+.card-header {
+    font-size: 1.1em;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+.card-value {
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+.total-menus .card-value {
+    color: #dc3545; /* Reddish */
+}
+.total-customers .card-value {
+    color: #6f42c1; /* Purplish */
+}
+.total-sales .card-value {
+    color: #28a745; /* Greenish */
+}
+
+/* New container for order summary and menu items */
+
+.dashboard-sections-bottom {
+    display: flex;
+    gap: 30px; /* Space between the two sections */
+    margin-top: 30px; /* Space from the summary cards above */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+/* Order Summary Card (formerly sidebar) */
+
+.order-summary-card { /* Renamed from .sidebar */
+    flex: 0 0 350px; /* Give it a base width, but allow it to shrink */
+    max-width: 350px; /* Max width to keep it contained */
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* Center the content within the card */
+}
+.order-summary-card h2 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+
+}
+.chart-container {
+    width: 200px; /* Fixed width for the chart */
+    height: 200px; /* Fixed height for the chart */
+    margin-bottom: 20px;
+}
+.chart-legend {
+    width: 100%;
+    padding-left: 0; /* Remove padding from here */
+    display: flex; /* Use flexbox for legend items */
+    flex-direction: column; /* Stack legend items vertically */
+    align-items: flex-start; /* Align legend items to the start */
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+.legend-color.processed { background-color: #007bff; }
+
+.legend-color.completed { background-color: #ffc107; }
+
+.legend-color.pending { background-color: #28a745; }
+
+/* Menu List Section */
+
+.menu-list-section {
+    flex: 1; /* Allow it to grow and take remaining space */
+    min-width: 400px; /* Ensure it doesn't get too small before wrapping */
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    text-align: left; /* Align text inside to left, as it's a list */
+}
+.menu-list-section h2 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+.menu-item {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-item img {
+    max-width: 100%;
+    height: 120px; /* Fixed height for consistency */
+    object-fit: cover; /* Ensures images cover the area without distortion */
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.menu-item h3 {
+    font-size: 1.1em;
+    margin: 10px 0 5px;
+    color: #333;
+}
+.menu-item p {
+    font-size: 0.9em;
+    color: #666;
+    margin: 0;
+}
+.menu-item .price {
+    font-weight: bold;
+    color: #28a745;
+    margin-top: 5px;
+}
+
+.popular-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ffc107;
+    color: #333;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Responsive adjustments */
+
+@media (max-width: 1024px) { /* Adjust breakpoint if needed */
+    .dashboard-sections-bottom {
+        flex-direction: column; /* Stack them vertically on smaller screens */
+        align-items: center; /* Center them when stacked */
+    }
+    .order-summary-card, .menu-list-section {
+        flex: none; /* Remove flex sizing when stacked */
+        width: 100%; /* Take full width */
+        max-width: 600px; /* Optional: limit max width for better readability on very wide small screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .summary-cards {
+        flex-direction: column;
+    }
+    .main-container {
+        margin-left: 0; /* Remove sidebar margin when sidebar is closed/hidden on mobile */
+    }
+    .menu-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+/* This media query handles the sidebar interaction for when it's closed */
+
+@media (max-width: 768px) {
+    .sidenav {
+        width: 0;
+    }
+    .main-container {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 769px) {
+    .sidenav {
+        width: 250px;
+    }
+    .main-container {
+        margin-left: 250px;
+    }
+}

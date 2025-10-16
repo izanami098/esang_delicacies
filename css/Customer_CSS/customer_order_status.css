@@ -1,0 +1,968 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+h2 {
+    text-align: center;
+}
+/* Customer Info Styles */
+.customer-info {
+    width: 100%;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee; /* Separator line */
+}
+.customer-info .info-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.customer-info .customer-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f0; /* Light grey background for icon */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    font-size: 20px;
+    color: #8c8c8c; /* Icon color */
+    border: 1px solid #ccc;
+}
+.customer-info .customer-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+.customer-info .info-details p {
+    margin: 5px 0;
+    font-size: 0.95em;
+    color: #555;
+    padding-left: 50px; /* Align with the name after the icon */
+}
+.customer-info .total-amount {
+    margin-top: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #8c8c8c; /* Matching the progress bar active color */
+    padding-left: 50px;
+}
+/* New container for progressbar and return button */
+.order-status-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.progressbar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1; /* Allow progressbar to take up available space */
+    margin-right: 20px; /* Space between progressbar and button */
+}
+.progressbar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #e0e0e0;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+.progress {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: #8c8c8c; /* Color of the active line */
+    transform: translateY(-50%);
+    z-index: 2;
+    transition: width 0.4s ease-in-out;
+}
+.progress-step {
+    width: 80px; /* Adjust size of the circles */
+    height: 80px;
+    background-color: #fff;
+    border: 3px solid #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+    transition: border-color 0.4s ease-in-out;
+}
+.progress-step i {
+    font-size: 40px;
+    color: #e0e0e0;
+    transition: color 0.4s ease-in-out;
+}
+.progress-step.active {
+    border-color: #8c8c8c;
+}
+.progress-step.active i {
+    color: #8c8c8c;
+}
+.progress-step::after {
+    content: attr(data-title);
+    position: absolute;
+    top: calc(100% + 10px);
+    width: 120px;
+    text-align: center;
+    color: #555;
+    font-size: 14px;
+}
+.progress-step a {
+    font-size: 10px;
+    position: absolute;
+    bottom: -20px;
+    color: #5071F1;
+}
+
+/* Return Order Button */
+/* Delivered Status Rider Information Section */
+.delivered-rider-info {
+    background: #ffffff;
+    border: 2px solid #e9ecef;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 30px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.rider-info-card {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.rider-profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rider-profile-pic {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+    border: 3px solid #dee2e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    color: #8c8c8c;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.plate-number-badge {
+    background: #6c757d;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+}
+
+.rider-details-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.rider-info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #8c8c8c;
+    transition: transform 0.2s ease;
+}
+
+.rider-info-item:hover {
+    transform: translateX(5px);
+}
+
+.rider-info-item i {
+    font-size: 20px;
+    color: #8c8c8c;
+    width: 25px;
+    text-align: center;
+}
+
+.rider-info-item span {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Delivery Feedback Section */
+.delivery-feedback-section {
+    background: #ffffff;
+    border: 2px solid #e9ecef;
+    border-radius: 15px;
+    padding: 40px;
+    margin: 30px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.feedback-header h3 {
+    color: #8c8c8c;
+    font-size: 1.5em;
+    font-weight: 400;
+    margin: 0 0 40px 0;
+    text-transform: lowercase;
+}
+
+.rating-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+}
+
+.rating-category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.star-rating {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.star-rating i {
+    font-size: 35px;
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.1s ease;
+}
+
+.star-rating i:hover,
+.star-rating i.active {
+    color: #ffc107;
+    transform: scale(1.1);
+}
+
+.star-rating i.hovered {
+    color: #ffc107;
+}
+
+.rating-category label {
+    font-size: 1.2em;
+    color: #8c8c8c;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.feedback-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.submit-feedback-btn,
+.return-item-btn {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.submit-feedback-btn {
+    background: #8c8c8c;
+    color: white;
+}
+
+.submit-feedback-btn:hover {
+    background: #7a7a7a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(140, 140, 140, 0.3);
+}
+
+.return-item-btn {
+    background: #8c8c8c;
+    color: white;
+}
+
+.return-item-btn:hover {
+    background: #7a7a7a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(140, 140, 140, 0.3);
+}
+
+/* Original Rider Information Section (keep for other statuses) */
+.rider-info-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 2px solid #dee2e6;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 30px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rider-info-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.rider-info-section h3 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.rider-summary {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.rider-avatar {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #5071F1 0%, #3d5ab8 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 35px;
+    box-shadow: 0 4px 8px rgba(80, 113, 241, 0.3);
+    border: 3px solid white;
+}
+
+.rider-details-summary {
+    flex-grow: 1;
+}
+
+.rider-name-summary {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin: 0 0 6px 0;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rider-name-summary::before {
+    content: "👤";
+    font-size: 0.9em;
+}
+
+.rider-phone-summary {
+    color: #6c757d;
+    margin: 0 0 6px 0;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.rider-phone-summary::before {
+    content: "📞";
+    font-size: 0.9em;
+}
+
+.rider-tracking-summary {
+    color: #5071F1;
+    margin: 0;
+    font-size: 0.95em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(80, 113, 241, 0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: inline-flex;
+}
+
+.rider-tracking-summary::before {
+    content: "📦";
+    font-size: 0.9em;
+}
+
+.rider-details-btn {
+    padding: 8px 16px;
+    background-color: #5071F1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.rider-details-btn:hover {
+    background-color: #3d5ab8;
+}
+
+/* Return Order Button */
+.return-order-button {
+    padding: 10px 20px;
+    background-color: white;
+    color: #5071F1;
+    border: 1px solid #5071F1;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.return-order-button:hover {
+    background-color: #5071F1;
+    color: white;
+}
+
+/* Message Styles */
+.no-orders-message,
+.error-message {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.no-orders-message h2,
+.error-message h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.no-orders-message p,
+.error-message p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #5071F1;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #3d5ab8;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+.modal-content-small {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.modal-header h3 {
+    margin: 0;
+}
+.close-button {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Select Reason Modal */
+.reason-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.reason-option input[type="radio"] {
+    accent-color: #d9534f;
+}
+.done-button, .submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+/* Request Summary Modal */
+.request-summary-body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+.request-summary-body h3 {
+    font-size: 1.5em;
+    text-align: center;
+}
+.item-list {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+.item-list h4 {
+    color: #555;
+    font-weight: normal;
+}
+.item-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.item-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+.item-card .item-details {
+    flex-grow: 1;
+}
+.item-card .item-details p {
+    margin: 0;
+    font-size: 1em;
+}
+.item-card .item-details .quantity {
+    color: #888;
+    font-size: 0.9em;
+}
+.item-card .quantity-value {
+    font-weight: bold;
+}
+.request-details {
+    margin-bottom: 20px;
+}
+.detail-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.detail-row span:first-child {
+    font-weight: bold;
+}
+.detail-row a {
+    color: #5071F1;
+    text-decoration: none;
+}
+.refund-summary {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+.refund-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.refund-total .total-amount {
+    font-size: 1.5em;
+    color: #d9534f;
+}
+.refund-breakdown {
+    padding-left: 20px;
+    font-size: 0.9em;
+    color: #888;
+}
+.refund-breakdown p {
+    margin: 5px 0;
+}
+.refund-method-selection {
+    margin-top: 20px;
+}
+.refund-method-selection h4 {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.refund-method-selection .note {
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 0;
+}
+.refund-options {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.refund-option {
+    background-color: #f8f8f8;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 15px;
+    flex: 1 1 45%;
+    position: relative;
+    cursor: pointer;
+}
+.refund-option input[type="radio"] {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    accent-color: #5071F1;
+}
+.refund-option h5 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.refund-option p {
+    font-size: 0.9em;
+    color: #666;
+    margin: 0;
+}
+.refund-option.selected {
+    border-color: #5071F1;
+    background-color: #e6f0ff;
+}
+.refund-option #addGcashLink {
+    display: none;
+    font-weight: bold;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    color: #5071F1;
+}
+.refund-option.selected #addGcashLink {
+    display: block;
+}
+.upload-images {
+    margin-top: 20px;
+}
+.upload-images h4 {
+    margin-bottom: 5px;
+}
+.upload-label {
+    display: block;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    color: #888;
+}
+.submit-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* Refund GCash Modal */
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Rider Details Modal */
+.rider-info-card {
+    background-color: #f8f8f8;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+.profile-pic-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: #fff;
+}
+.details-container {
+    flex-grow: 1;
+}
+.rider-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0;
+}
+.tracking-id {
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: inline-block;
+}
+.contact-info {
+    margin-top: 15px;
+}
+.contact-info p {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9em;
+}
+
+/* --- Responsive Styles --- */
+/* Tablet and smaller desktop screens (max-width: 992px) */
+@media (max-width: 992px) {
+    .main-content {
+        margin-left: 80px;
+    }
+}
+/* Mobile devices (max-width: 768px) */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        padding: 15px;
+    }
+    .menu-icon {
+        display: block;
+    }
+    .overlay.active {
+    display: block;
+    }
+    .container {
+        width: 95%;
+        padding: 20px;
+    }
+    .customer-info .info-details p,
+    .customer-info .total-amount {
+    padding-left: 0;
+    text-align: center;
+    }
+    .customer-info .info-row {
+        justify-content: center;
+}
+    .order-status-header {
+        flex-direction: column;
+        align-items: center;
+    }
+    .progressbar {  
+        flex-direction: column;
+        align-items: center;
+        position: static;
+        margin-bottom: 20px;
+        margin-right: 0;
+    }
+    .progressbar::before,
+    .progress {
+        display: none;
+    }
+    .progress-step {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 30px;
+        border-width: 2px;
+    }
+    .progress-step i {
+        font-size: 30px;
+    }
+    .progress-step::after {
+        top: calc(100% + 5px);
+        font-size: 12px;
+        width: 100px;
+    }
+    .progress-step:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        bottom: -25px;
+        left: 50%;
+        width: 2px;
+        height: 25px;
+        background-color: #e0e0e0;
+        transform: translateX(-50%);
+        z-index: 0;
+    }
+    .progress-step.active + .progress-step::before {
+        background-color: #8c8c8c;
+    }
+    .refund-options {
+        flex-direction: column;
+    }
+    
+    /* Rider info section mobile styles */
+    .rider-info-section {
+        padding: 15px;
+    }
+    
+    .rider-summary {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .rider-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        margin: 0 auto;
+    }
+    
+    .rider-details-summary {
+        text-align: center;
+    }
+    
+    .rider-details-btn {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+    
+    /* Delivered rider info mobile styles */
+    .delivered-rider-info {
+        padding: 20px;
+    }
+    
+    .rider-info-card {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .profile-circle {
+        width: 100px;
+        height: 100px;
+        font-size: 40px;
+    }
+    
+    .rider-details-section {
+        gap: 15px;
+    }
+    
+    .rider-info-item {
+        padding: 12px 15px;
+    }
+    
+    .rider-info-item span {
+        font-size: 1em;
+    }
+    
+    /* Delivery feedback section mobile styles */
+    .delivery-feedback-section {
+        padding: 25px 15px;
+    }
+    
+    .feedback-header h3 {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+    }
+    
+    .rating-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        max-width: 100%;
+    }
+    
+    .star-rating i {
+        font-size: 28px;
+    }
+    
+    .rating-category label {
+        font-size: 1em;
+    }
+    
+    .feedback-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .submit-feedback-btn,
+    .return-item-btn {
+        width: 100%;
+        max-width: 200px;
+        padding: 12px 30px;
+        font-size: 1em;
+    }
+}

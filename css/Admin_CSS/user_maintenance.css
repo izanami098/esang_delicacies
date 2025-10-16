@@ -1,0 +1,275 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+.main-container {
+    margin-left: 250px; /* Same as sidebar width */
+    padding: 20px;
+    transition: margin-left 0.5s;
+}
+
+/* Header and Control Bar */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 1rem;
+}
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Search Input Styling */
+.search-container {
+    position: relative;
+}
+.search-container input {
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.search-container i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+/* Button Styling */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+.btn-primary {
+    background-color: #FFC222;
+    color: #fff;
+}
+.btn-primary:hover {
+    background-color: #f5b921;
+}
+
+/* Table Styling */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.user-table th, .user-table td {
+    padding: 1rem;
+    text-align: left;
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.user-table th {
+    background-color: #e5e7eb;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 12px;
+    font-weight: 500;
+}
+.user_table tr {
+    transition: background-color 0.2s ease-in-out;
+}
+.user-table tr:hover {
+    background-color: #f9fafb;;
+}
+.user-table td {
+    color: #4b5563;
+}
+.user-table .actions {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.user-table .action-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+.user-table .action-btn.edit {
+    background-color: #4CAF50;
+    color: white;
+}
+.user-table .action-btn.edit:hover {
+    background-color: #45a049;
+}
+/* New style for disable button */
+.user-table .action-btn.disable {
+    background-color: #dc3545; /* Red for disable */
+    color: white;
+}
+.user-table .action-btn.disable:hover {
+    background-color: #c82333;
+}
+/* New style for enable button */
+.user-table .action-btn.enable {
+    background-color: #28a745; /* Green for enable */
+    color: white;
+}
+.user-table .action-btn.enable:hover {
+    background-color: #218838;
+}
+
+/* Style for active status */
+.user-table .status.active {
+    color: green;
+    font-weight: bold;
+}
+/* Style for disabled status */
+.user-table .status.disabled {
+    color: red;
+    font-weight: bold;
+}
+
+/* Style for verified status */
+.user-table .verified.verified {
+    color: green;
+    font-weight: bold;
+}
+.user-table .verified.unverified {
+    color: orange;
+    font-weight: bold;
+}
+
+/* Button styling for secondary button */
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Button styling for info button */
+.btn-info {
+    background-color: #17a2b8;
+    color: white;
+}
+.btn-info:hover {
+    background-color: #138496;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+.modal-header h3 {
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 600;
+}
+.close-btn {
+    font-size: 2rem;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.close-btn:hover {
+    color: #666;
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+/* Styling for checkboxes in the modal */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: normal;
+}
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Confirmation Modal Styling */
+.confirm-modal-content {
+    max-width: 400px;
+    text-align: center;
+}
+.confirm-modal-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .user-table th, .user-table td {
+        padding: 0.75rem 0.5rem;
+    }
+}

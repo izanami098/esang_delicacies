@@ -1,0 +1,208 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+main {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+.header {
+    margin-left: 250px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #d9534f;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.header-left h1 {
+    font-size: 1.5em;
+    margin: 0;
+    font-weight: normal;
+}
+.header-right {
+    font-size: 1.1em;
+}
+.invoices-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+}
+.filter-btn {
+    padding: 10px 20px;
+    border: 1px solid #d9534f;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #d9534f;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.filter-btn:hover {
+    background-color: #f7e0df;
+}
+.filter-btn.active {
+    background-color: #d9534f;
+    color: white;
+}
+.delete-btn {
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+.delete-btn:disabled {
+    background-color: #b3b3b3;
+    cursor: not-allowed;
+}
+.delete-btn:hover:enabled {
+    background-color: #c82333;
+}
+#invoices-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+.invoice-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.invoice-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.invoice-card.selected {
+    border-color: #d9534f;
+    box-shadow: 0 0 10px rgba(217, 83, 79, 0.5);
+}
+.invoice-checkbox {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+}
+.invoice-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+.invoice-header span {
+    color: #777;
+    font-size: 0.9em;
+}
+.invoice-details {
+    margin-bottom: 15px;
+}
+.invoice-details table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.invoice-details th, .invoice-details td {
+    text-align: left;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+}
+.invoice-details th {
+    font-weight: bold;
+    color: #555;
+}
+.invoice-details td {
+    color: #666;
+}
+.invoice-total {
+    text-align: right;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #d9534f;
+    padding-top: 10px;
+    border-top: 2px solid #eee;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+.modal-content h2 {
+    margin-top: 0;
+    color: #333;
+}
+.modal-content p {
+    color: #555;
+}
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+.cancel {
+    background-color: #ccc;
+    color: #333;
+}
+.delete {
+    background-color: #dc3545;
+    color: white;
+}
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    color: #aaa;
+}
+.close-button:hover {
+    color: #000;
+}

@@ -1,0 +1,347 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+
+/* Base styling for the main content area */
+.billing-container {
+    margin-left: 250px; /* Default for desktop with sidebar */
+    padding: 20px;
+}
+
+/* Utility classes */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.margin-top-large {
+    margin-top: 1.5rem;
+}
+.margin-bottom-small {
+    margin-bottom: 1rem;
+}
+.margin-bottom-medium {
+    margin-bottom: 1.5rem;
+}
+.padding-y-medium {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+.padding-x-medium {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.rounded {
+    border-radius: 0.5rem;
+}
+.shadow-small {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.text-center {
+    text-align: center;
+}
+.text-muted {
+    color: #6c757d;
+}
+.font-bold {
+    font-weight: 700;
+}
+.hidden {
+    display: none;
+}
+.flex {
+    display: flex;
+}
+.width-full {
+    width: 100%;
+}
+.margin-right-small {
+    margin-right: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+    border: 1px solid transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+.btn-light {
+    background-color: #e9ecef;
+    color: #495057;
+}
+.btn-light:hover {
+    background-color: #dae0e5;
+}
+.btn-primary {
+    background-color: #FFC222;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.btn-primary:hover {
+    background-color: #f5b921;
+}
+
+/* Dropdown styling */
+.dropdown-container {
+    position: relative;
+}
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+    background-color: #e9ecef;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.5rem);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+.dropdown-container.show .dropdown-list {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.dropdown-link {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+.dropdown-link:hover {
+    background-color: #dae0e5;
+}
+        
+/* Form elements */
+.form-label {
+    margin-bottom: 0.5rem;
+}
+.form-input {
+    display: block;
+    width: 98%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+label.required::before {
+    content: '*';
+    color: hsl(0, 72%, 51%);
+    margin-right: 4px;
+}   
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+}
+.input-group .form-input {
+    flex: 1 1 auto;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.input-icon {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    text-align: center;
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-right: none;
+    border-radius: 0.5rem 0 0 0.5rem;
+}
+
+/* Styling for the invoices */
+.invoice-box {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 24px;
+    margin-bottom: 24px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.invoice-header {
+    margin-bottom: 20px;
+    color: #333;
+}
+.invoice-header .user-info {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.invoice-header .username {
+    font-weight: bold;
+    flex-grow: 1;
+}
+.invoice-header .invoice-number, .invoice-header .date {
+    font-size: 0.9em;
+    color: #666;
+    margin-left: 10px;
+}
+.invoice-header .address, .invoice-header .payment-type {
+    font-size: 0.9em;
+    color: #555;
+    margin: 4px 0;
+}
+.invoice-items table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+.invoice-items th, .invoice-items td {
+    text-align: left;
+    padding: 8px 0;
+}
+.invoice-items th {
+    color: #888;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+.invoice-items td {
+    color: #333;
+}
+.invoice-items tr td:nth-child(2) {
+    font-weight: bold;
+}
+.invoice-summary {
+    margin-top: 20px;
+    text-align: right;
+    font-size: 1em;
+}
+.invoice-summary .summary-line {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 4px 0;
+}
+.invoice-summary .label {
+    color: #555;
+    margin-right: 10px;
+}
+.invoice-summary .delivery-fee-label {
+    color: #dc3545;
+}
+.invoice-summary .value {
+    font-weight: bold;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Tablets (landscape) and larger phones (landscape) - roughly 768px to 1024px */
+@media (max-width: 1024px) {
+    .billing-container {
+        margin-left: 0; /* Remove left margin for sidebar on smaller screens */
+        padding: 15px;
+    }
+
+    .header-section {
+        flex-direction: column; /* Stack buttons vertically */
+        align-items: flex-start; /* Align to the start */
+        gap: 1rem; /* Space between stacked buttons */
+    }
+
+    .dropdown-container {
+        width: 100%; /* Make dropdown take full width */
+    }
+
+    .btn-light.rounded.shadow-small {
+        width: 100%; /* Make buttons full width */
+        text-align: center;
+    }
+
+    .payment-form {
+        padding: 15px;
+    }
+}
+
+/* Mobile devices (portrait and landscape) - up to 767px */
+@media (max-width: 767px) {
+    .billing-container {
+        padding: 10px;
+    }
+
+    .header-section {
+        margin-bottom: 1.5rem;
+    }
+
+    .btn, .dropdown-link {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .dropdown-list {
+        min-width: unset; /* Remove min-width constraint */
+        width: 100%; /* Make dropdown list full width */
+        right: auto; /* Reset right alignment */
+        left: 0; /* Align to the left */
+    }
+
+    .form-input {
+        padding: 8px;
+        font-size: 15px;
+    }
+
+    .payment-form {
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .btn-primary {
+        padding: 10px 15px;
+        font-size: 1rem;
+    }
+
+    .input-group .form-input {
+        border-top-left-radius: 4px; /* Adjust radius for consistency */
+        border-bottom-left-radius: 4px;
+    }
+
+    .input-icon {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+        border-radius: 4px 0 0 4px;
+    }
+}
+
+/* Small mobile devices (e.g., iPhone 5/SE) - up to 374px */
+@media (max-width: 374px) {
+    .header-section {
+        gap: 0.75rem;
+    }
+
+    .btn-light.rounded.shadow-small, .btn-primary {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}

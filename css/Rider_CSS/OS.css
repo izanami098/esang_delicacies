@@ -1,0 +1,252 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 800px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto; /* Center the container and add some top/bottom margin */
+}
+
+/* Customer Info Styles */
+.customer-info {
+    width: 100%;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee; /* Separator line */
+}
+
+.customer-info .info-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.customer-info .customer-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f0; /* Light grey background for icon */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    font-size: 20px;
+    color: #8c8c8c; /* Icon color */
+    border: 1px solid #ccc;
+}
+
+.customer-info .customer-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+.customer-info .info-details p {
+    margin: 5px 0;
+    font-size: 0.95em;
+    color: #555;
+    padding-left: 50px; /* Align with the name after the icon */
+}
+
+.customer-info .total-amount {
+    margin-top: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #8c8c8c; /* Matching the progress bar active color */
+    padding-left: 50px;
+}
+
+.progressbar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.progressbar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #e0e0e0;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.progress {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: #8c8c8c; /* Color of the active line */
+    transform: translateY(-50%);
+    z-index: 2;
+    transition: width 0.4s ease-in-out;
+}
+
+.progress-step {
+    width: 80px; /* Adjust size of the circles */
+    height: 80px;
+    background-color: #fff;
+    border: 3px solid #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+    transition: border-color 0.4s ease-in-out;
+}
+
+.progress-step i { /* Changed from .progress-step img to .progress-step i */
+    font-size: 40px; /* Adjust icon size using font-size */
+    color: #e0e0e0; /* Default color for inactive icons */
+    transition: color 0.4s ease-in-out;
+}
+
+.progress-step.active {
+    border-color: #8c8c8c; /* Active circle border color */
+}
+
+.progress-step.active i { /* Changed from .progress-step.active img to .progress-step.active i */
+    color: #8c8c8c; /* Color for active icons */
+}
+
+.progress-step::after {
+    content: attr(data-title);
+    position: absolute;
+    top: calc(100% + 10px);
+    width: 120px; /* Adjust width to fit text */
+    text-align: center;
+    color: #555;
+    font-size: 14px;
+}
+
+.buttons {
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8c8c8c;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.btn:hover:not(:disabled) {
+    background-color: #6a6a6a;
+}
+
+/* --- Responsive Styles --- */
+
+/* Mobile devices (max-width: 768px) */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0; /* No offset for main content */
+        padding: 15px;
+    }
+
+    .menu-icon {
+        display: block; /* Show hamburger icon */
+    }
+
+    .overlay.active {
+        display: block; /* Show overlay when sidebar is active */
+    }
+
+    .container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .customer-info .info-details p,
+    .customer-info .total-amount {
+        padding-left: 0; /* Remove padding for smaller screens */
+        text-align: center; /* Center align info details */
+    }
+
+    .customer-info .info-row {
+        justify-content: center; /* Center customer name and icon */
+    }
+
+    .progressbar {
+        flex-direction: column; /* Stack steps vertically */
+        align-items: center; /* Center items when stacked */
+        position: static; /* Remove absolute positioning for vertical flow */
+        margin-bottom: 20px;
+    }
+
+    .progressbar::before,
+    .progress {
+        display: none; /* Hide horizontal line for vertical layout */
+    }
+
+    .progress-step {
+        width: 60px; /* Smaller circles */
+        height: 60px;
+        margin-bottom: 30px; /* Space between steps */
+        border-width: 2px; /* Thinner border */
+    }
+
+    .progress-step i {
+        font-size: 30px; /* Smaller icons */
+    }
+
+    .progress-step::after {
+        top: calc(100% + 5px); /* Adjust text position */
+        font-size: 12px;
+        width: 100px; /* Adjust width to prevent overlap */
+    }
+
+    /* Add a vertical line for progress on smaller screens */
+    .progress-step:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        bottom: -25px; /* Position below the circle */
+        left: 50%;
+        width: 2px;
+        height: 25px; /* Length of the line segment */
+        background-color: #e0e0e0;
+        transform: translateX(-50%);
+        z-index: 0;
+    }
+
+    .progress-step.active + .progress-step::before { /* Make line active when previous step is active */
+        background-color: #8c8c8c;
+    }
+
+    .buttons {
+        flex-direction: column; /* Stack buttons vertically */
+    }
+
+    .btn {
+        margin: 10px 0; /* Add vertical margin between buttons */
+        max-width: 100%; /* Take full width */
+    }
+}

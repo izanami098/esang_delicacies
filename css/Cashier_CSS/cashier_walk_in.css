@@ -1,0 +1,391 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+main {
+    margin-left: 250px; /* Default for desktop with sidebar */
+    padding: 20px;
+    transition: margin-left 0.3s ease; /* Smooth transition for sidebar toggle */
+}
+.header {
+    margin-left: 250px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #d9534f;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.header h1 {
+    font-size: 1.5em;
+    margin: 0;
+    font-weight: normal;
+}
+#search-bar {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 20px;
+    width: 250px;
+    font-size: 1em;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+#search-bar::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+#current-date {
+    font-size: 1.1em;
+}
+.all-menu-button {
+    background-color: #FFC222;
+    border: 1px solid #f5b921;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+.all-menu-button:hover {
+    background-color: #f5b921;
+}
+.main-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    align-items: flex-start; /* Aligns items to the top */
+}
+.menu-contents {
+    flex: 2; /* Takes up 2/3 of the space */
+}
+.order-summary-panel {
+    flex: 1; /* Takes up 1/3 of the space */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: sticky; /* Makes the panel stick as the user scrolls */
+    top: 20px; /* Distance from the top */
+}
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.summary-header h2 {
+    margin: 0;
+    color: #333;
+}
+.clear-order-button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.clear-order-button:hover {
+    background-color: #c9302c;
+}
+#order-list {
+    min-height: 150px;
+    max-height: 300px;
+    overflow-y: auto;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+}
+.order-item:last-child {
+    border-bottom: none;
+}
+.item-details {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.item-details h4 {
+    margin: 0;
+    font-size: 1em;
+}
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.quantity-controls button {
+    background-color: #FFC222;
+    border: none;
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    font-size: 1em;
+    cursor: pointer;
+    color: white;
+}
+.quantity-controls span {
+    width: 20px;
+    text-align: center;
+}
+.item-price {
+    font-weight: bold;
+    color: #d9534f;
+}
+.total-summary {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+.payment-methods {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
+}
+.payment-button {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.payment-button.active {
+    background-color: #d9534f;
+    color: white;
+    border-color: #d9534f;
+}
+#payment-inputs {
+    margin-top: 15px;
+}
+.payment-input-group {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+}
+.payment-input-group.active {
+    display: flex;
+}
+.payment-input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+#confirm-payment-button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#confirm-payment-button:hover {
+    background-color: #c9302c;
+}
+.receipt-preview {
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+#receipt-content {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 0.9em;
+    min-height: 100px;
+}
+#download-receipt-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: #0275d8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#download-receipt-button:hover {
+    background-color: #025aa5;
+}
+.menu-contents {
+    /*background-color: #f2f2f2;*/
+    margin: 0;
+    padding: 20px;
+    padding-top: 20px;
+}
+.menu-tab {
+    display: flex;
+    flex-wrap: wrap; /* Allows buttons to wrap to the next line on smaller screens */
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center; /* Center the buttons */
+}
+.menu-tab button {
+    background-color: #FFC222;
+    border: 1px solid #f5b921;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.menu-tab button:hover {
+    background-color: #f5b921;
+}
+.menu-tab button.active {
+    background-color: #d9534f; /* Active button background color */
+    color: #fff; /* Active button text color */
+    border-color: #d9534f;
+}
+/* Existing CSS for .bilao-button */
+.bilao-button {
+    color: #fff;
+    background-color: #FFC222;
+    border: 1px solid #f5b921;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.bilao-button:hover {
+    background-color: #f5b921;
+}
+
+/* New CSS for the active state of the bilao buttons */
+.bilao-button.active-bilao-button {
+    background-color: #d9534f; /* Active button background color */
+    color: #fff; /* Active button text color */
+    border-color: #d9534f;
+}
+.menu-grid {
+    display: none; /* Hide all grids by default */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+.menu-grid h2 {
+    text-align: center;
+    color: #d9534f;
+}
+.menu-grid.active-grid {
+    display: grid; /* Show the active grid */
+}
+.menu-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer; /* Add cursor pointer to all menu items */
+}
+.menu-item img {
+    width: 100%;
+    height: 150px; /* Fixed height for images */
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.menu-item h3 {
+    font-size: 1.2em;
+    margin: 10px 0;
+    color: #333;
+}
+.menu-item p {
+    color: #555;
+    font-size: 1em;
+}
+.price {
+    font-weight: bold;
+    color: #d9534f;
+    margin-top: 5px;
+}
+/* Packaged Meals Specific Styling */
+
+/* Grid layout for packaged meals, spans multiple columns for full-width headings */
+#packaged-meals-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+}
+/* Styles for each step in the packaged meals customization process */
+.packaged-meal-step {
+    display: none; /* Hide all steps by default */
+    grid-column: 1 / -1; /* Make each step container span the full width */
+    grid-template-columns: subgrid; /* Maintain the main grid's column structure */
+    gap: 15px;
+}
+/* Show the active step */
+.packaged-meal-step.active-step {
+    display: grid;
+}
+/* Active selection highlight for menu items */
+.menu-item.selected {
+    border-color: #d9534f;
+    box-shadow: 0 0 10px rgba(217, 83, 79, 0.5);
+    transform: scale(1.03); /* Subtle scale effect on selection */
+}
+.menu-item:hover {
+    border-color: #f5b921; /* Highlight on hover */
+    box-shadow: 0 0 5px rgba(245, 185, 33, 0.5);
+}
+/* Add button styling */
+.add-button-container {
+    grid-column: 1 / -1;
+    text-align: right;
+    margin-top: 20px;
+}
+.add-button {
+    background-color: #d9534f;
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.add-button:hover {
+    background-color: #c9302c;
+    transform: translateY(-2px);
+}

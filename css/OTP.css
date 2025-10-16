@@ -1,0 +1,161 @@
+/* Inherited styles from the sign-up page */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fff;
+}
+.container {
+    display: flex;
+    height: 600px;
+    width: 90%;
+    max-width: 1200px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+.form-container {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+/* OTP page specific styles */
+.back-arrow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 2em;
+    color: #333;
+    text-decoration: none;
+}
+.back-arrow:hover {
+    color: #000;
+}
+h1 {
+    text-align: center;
+    color: red;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+h2 {
+    color: #333;
+}
+input, select {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #e6b800;
+}
+.image-section {
+    background-image: url("../VImages/Food Poster.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex: 1;
+    background-color: #FFD700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.image-section img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+}
+
+/* OTP page specific styles */
+.back-arrow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 2em;
+    color: #333;
+    text-decoration: none;
+}
+.instruction {
+    color: #666;
+    margin-bottom: 20px;
+}
+.phone-input-container {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0;
+}
+.country-code {
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-right: 1px solid #ddd;
+    color: #555;
+    font-weight: bold;
+}
+#phone-number {
+    flex-grow: 1;
+    border: none;
+    padding: 10px;
+    margin: 0;
+}
+.otp-input-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+.otp-input {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 1.5em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+.otp-input:focus {
+    border-color: #ffcc00;
+    outline: none;
+}
+.resend-btn {
+    background: none;
+    border: none;
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    font-weight: normal;
+    width: auto;
+}
+.resend-btn:hover {
+    color: #0056b3;
+    background-color: transparent;
+}

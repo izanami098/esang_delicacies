@@ -1,0 +1,141 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fff;
+}
+.container {
+    display: flex;
+    height: 600px;
+    width: 90%;
+    max-width: 1200px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensures image corners are rounded */
+}
+.form-container {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+h1 {
+            text-align: center;
+            color: red;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #e6b800;
+        }
+        .image-section {
+            background-image: url("../VImages/Food Poster.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            flex: 1;
+            background-color: #FFD700; /* Background color if image doesn't fill */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px; /* Optional padding around image */
+        }
+
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 5px; /* Slight border radius for the image itself */
+        }
+        /* START OF NEW CODE */
+        .terms-container {
+            display: flex;
+            align-items: center;
+            width: 90%;
+            margin: 10px 0;
+        }
+        .terms-container input {
+            width: auto;
+            margin-right: 10px;
+        }
+        .terms-container label {
+            font-size: 0.9em;
+        }
+        .terms-container a {
+            color: red;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; /* 5% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            border-radius: 8px;
+            position: relative;
+            max-height: 80vh; /* Limits the height */
+            overflow-y: auto; /* Adds scrollbar */
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .terms-text h2 {
+            text-align: center;
+            color: #333;
+        }
+        .terms-text ol, .terms-text ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .terms-text li {
+            margin-bottom: 15px;
+        }

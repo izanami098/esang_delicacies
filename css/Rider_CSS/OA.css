@@ -1,0 +1,364 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+.main-content {
+    margin-left: 250px;
+    padding: 0;
+    transition: margin-left 0.3s ease; /* Smooth transition for main content margin */
+}
+
+.page-header {
+    background-color: #e53935; /* Red from the image */
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.page-header i {
+    margin-right: 15px;
+    font-size: 30px;
+}
+
+.order-assignments-list {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between order cards */
+}
+
+.order-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.customer-info-section {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee; /* Separator line */
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.customer-profile-pic {
+    width: 50px;
+    height: 50px;
+    background-color: #f0f2f5; /* Light background for profile pic area */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #999; /* Grey icon */
+    margin-right: 15px;
+    flex-shrink: 0; /* Prevent shrinking on smaller screens */
+}
+
+.customer-details p {
+    margin: 0; /* Remove default paragraph margins */
+    font-size: 15px;
+    color: #555;
+}
+
+.customer-name {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px !important; /* Adjust spacing */
+}
+
+.order-summary-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Align quantity to top and total to bottom */
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    gap: 10px; /* Space between elements when wrapped */
+}
+
+.order-quantity {
+    font-size: 16px;
+    color: #555;
+    margin: 0;
+    align-self: flex-start; /* Align quantity to the start */
+}
+
+.order-total-amount {
+    font-size: 22px;
+    font-weight: bold;
+    color: #e53935; /* Red color for total amount */
+    margin: 0;
+}
+
+/* --- Responsive Styles --- */
+/* Tablet and smaller desktop screens (max-width: 992px) */
+@media (max-width: 992px) {
+    .main-content {
+        margin-left: 80px; /* Adjust main content margin to match collapsed sidebar */
+    }
+
+    .sidenav .active {
+        margin: 0; /* Remove horizontal margin for active item */
+        border-radius: 0; /* Remove border-radius for collapsed state */
+        padding-left: 0;
+    }
+
+    /* Hide dropdown content in collapsed sidebar */
+    .dropdown-content {
+        display: none !important;
+    }
+
+    .dropdown-btn .fa-caret-down {
+        display: none;
+    }
+
+    .page-header {
+        font-size: 20px;
+        padding: 10px 15px;
+    }
+
+    .page-header i {
+        font-size: 25px;
+        margin-right: 10px;
+    }
+
+    .order-assignments-list {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .order-card {
+        padding: 15px;
+    }
+
+    .customer-name {
+        font-size: 16px;
+    }
+
+    .customer-details p {
+        font-size: 14px;
+    }
+
+    .order-total-amount {
+        font-size: 20px;
+    }
+}
+
+/* Mobile devices (max-width: 768px) */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0; /* No margin on mobile */
+        padding-top: 0; /* Adjust padding if header is now fixed */
+    }
+
+    .page-header {
+        font-size: 18px;
+        padding: 10px 10px;
+        justify-content: center; /* Center header content */
+        text-align: center;
+    }
+
+    .page-header i {
+        font-size: 22px;
+        margin-right: 10px;
+    }
+
+    .order-assignments-list {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .order-card {
+        padding: 15px;
+        flex-direction: column; /* Stack sections vertically */
+    }
+
+    .customer-info-section {
+        flex-direction: column; /* Stack profile pic and details */
+        align-items: flex-start; /* Align details to the start */
+        text-align: left;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .customer-profile-pic {
+        margin-right: 0;
+        margin-bottom: 10px; /* Space between pic and details */
+    }
+
+    .customer-name {
+        font-size: 15px;
+    }
+
+    .customer-details p {
+        font-size: 13px;
+    }
+
+    .order-summary-section {
+        flex-direction: column; /* Stack quantity and total */
+        align-items: flex-start; /* Align to the left */
+        gap: 5px;
+    }
+
+    .order-total-amount {
+        font-size: 18px;
+    }
+}
+
+/* Even smaller mobile screens (max-width: 480px) */
+@media (max-width: 480px) {
+    .page-header {
+        font-size: 16px;
+        padding: 8px 8px;
+    }
+
+    .page-header i {
+        font-size: 20px;
+    }
+
+    .order-assignments-list {
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .order-card {
+        padding: 12px;
+    }
+
+    .customer-name {
+        font-size: 14px;
+    }
+
+    .customer-details p {
+        font-size: 12px;
+    }
+
+    .order-total-amount {
+        font-size: 16px;
+    }
+}
+
+/* Logout Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto; /* For older browsers, flexbox handles centering */
+    padding: 30px;
+    border: 1px solid #888;
+    width: 90%; /* Responsive width */
+    max-width: 400px; /* Maximum width */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-align: center;
+    position: relative;
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+.modal-content h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.modal-content p {
+    margin-bottom: 30px;
+    font-size: 16px;
+    color: #555;
+}
+
+.modal-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-actions .cancel {
+    background-color: #ccc;
+    color: #333;
+}
+
+.modal-actions .cancel:hover {
+    background-color: #bbb;
+}
+
+.modal-actions .logout {
+    background-color: #dc2626; /* Match your save button color */
+    color: white;
+}
+
+.modal-actions .logout:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
+
+/* Ensure modal is hidden by default and shown with JavaScript */
+.modal.show {
+    display: flex; /* Use flex to center content */
+}
+
+/* Responsive adjustments for modal */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+    .modal-content h2 {
+        font-size: 20px;
+    }
+    .modal-content p {
+        font-size: 14px;
+    }
+    .modal-actions button {
+        padding: 8px 15px;
+        font-size: 14px;
+        margin: 0 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 15px;
+    }
+    .close-button {
+        font-size: 24px;
+        top: 5px;
+        right: 10px;
+    }
+}
