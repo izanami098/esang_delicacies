@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rider Information Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        /* Progress bar styles */
+        .progressbar {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .progressbar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #e0e0e0;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        
+        .progress {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 75%;
+            height: 3px;
+            background-color: #8c8c8c;
+            transform: translateY(-50%);
+            z-index: 2;
+            transition: width 0.4s ease-in-out;
+        }
+        
+        .progress-step {
+            width: 80px;
+            height: 80px;
+            background-color: #fff;
+            border: 3px solid #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 3;
+            transition: border-color 0.4s ease-in-out;
+        }
+        
+        .progress-step i {
+            font-size: 40px;
+            color: #e0e0e0;
+            transition: color 0.4s ease-in-out;
+        }
+        
+        .progress-step.active {
+            border-color: #8c8c8c;
+        }
+        
+        .progress-step.active i {
+            color: #8c8c8c;
+        }
+        
+        .progress-step::after {
+            content: attr(data-title);
+            position: absolute;
+            top: calc(100% + 10px);
+            width: 120px;
+            text-align: center;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        /* Rider Information Section */
+        .rider-info-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #dee2e6;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .rider-info-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        .rider-info-section h3 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .rider-summary {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .rider-avatar {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #5071F1 0%, #3d5ab8 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 35px;
+            box-shadow: 0 4px 8px rgba(80, 113, 241, 0.3);
+            border: 3px solid white;
+        }
+        
+        .rider-details-summary {
+            flex-grow: 1;
+        }
+        
+        .rider-name-summary {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 0 0 6px 0;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .rider-name-summary::before {
+            content: "👤";
+            font-size: 0.9em;
+        }
+        
+        .rider-phone-summary {
+            color: #6c757d;
+            margin: 0 0 6px 0;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+        
+        .rider-phone-summary::before {
+            content: "📞";
+            font-size: 0.9em;
+        }
+        
+        .rider-tracking-summary {
+            color: #5071F1;
+            margin: 0;
+            font-size: 0.95em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(80, 113, 241, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-flex;
+        }
+        
+        .rider-tracking-summary::before {
+            content: "📦";
+            font-size: 0.9em;
+        }
+        
+        .rider-details-btn {
+            padding: 8px 16px;
+            background-color: #5071F1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .rider-details-btn:hover {
+            background-color: #3d5ab8;
+        }
+        
+        .note {
+            background-color: #e7f3ff;
+            border: 1px solid #b8daff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 30px;
+            color: #004085;
+        }
+        
+        .note strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .rider-summary {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .rider-avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+                margin: 0 auto;
+            }
+            
+            .rider-details-summary {
+                text-align: center;
+            }
+            
+            .rider-details-btn {
+                width: 100%;
+                max-width: 200px;
+                margin: 0 auto;
+            }
+            
+            .progressbar {
+                flex-direction: column;
+                align-items: center;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .progressbar::before,
+            .progress {
+                display: none;
+            }
+            
+            .progress-step {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 30px;
+                border-width: 2px;
+            }
+            
+            .progress-step i {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1>Rider Information Display Demo</h1>
+        
+        <!-- Order Progress Bar -->
+        <div class="progressbar">
+            <div class="progress"></div>
+            <div class="progress-step active" data-title="order is placed">
+                <i class="fas fa-box"></i>
+            </div>
+            <div class="progress-step active" data-title="need approval">
+                <i class="fas fa-clipboard-check"></i>
+            </div>
+            <div class="progress-step active" data-title="Order is being prepared">
+                <i class="fas fa-hourglass-half"></i>
+            </div>
+            <div class="progress-step active" data-title="order is out for delivery">
+                <i class="fas fa-truck"></i>
+            </div>
+            <div class="progress-step" data-title="delivered">
+                <i class="fas fa-check"></i>
+            </div>
+        </div>
+        
+        <!-- Rider Information Section -->
+        <div class="rider-info-section">
+            <h3>Your Delivery Driver</h3>
+            <div class="rider-summary">
+                <div class="rider-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="rider-details-summary">
+                    <p class="rider-name-summary">Ivan Francis</p>
+                    <p class="rider-phone-summary">09604567862</p>
+                    <p class="rider-tracking-summary">Tracking: SFX1234G</p>
+                </div>
+                <button class="rider-details-btn" onclick="alert('View rider details modal would open here!')">View Details</button>
+            </div>
+        </div>
+        
+        <div class="note">
+            <strong>Implementation Notes:</strong>
+            This rider information section will automatically appear when a rider has been assigned to accept the customer's order delivery. The information includes the rider's name, phone number, and tracking information, making it easy for customers to contact their driver if needed.
+        </div>
+    </div>
+</body>
+</html>

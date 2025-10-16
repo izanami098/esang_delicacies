@@ -1,0 +1,21 @@
+{
+    "name": "esang-delicacies/notification-system",
+    "description": "Real-time notification system for Esang Delicacies customer orders",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "phpmailer/phpmailer": "^6.10",
+        "cboden/ratchet": "^0.4",
+        "ratchet/rfc6455": "^0.3",
+        "react/socket": "^1.15",
+        "textalk/websocket": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "EsangDelicacies\\Notifications\\": "src/notifications/"
+        }
+    },
+    "scripts": {
+        "start-websocket-server": "php websocket_server.php"
+    }
+}

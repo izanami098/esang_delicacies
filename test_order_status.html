@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Order Status APIs</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { color: green; }
+        .error { color: red; }
+        pre { background: #f5f5f5; padding: 10px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Order Status API Tests</h1>
+    
+    <div class="test-section">
+        <h2>1. Test Get Pending Orders</h2>
+        <button onclick="testPendingOrders()">Test API</button>
+        <div id="pendingOrdersResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>2. Test Get Order Details (Order ID: 3)</h2>
+        <button onclick="testOrderDetails()">Test API</button>
+        <div id="orderDetailsResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>3. Test Update Order Status</h2>
+        <button onclick="testUpdateStatus()">Test API (Advance Order 3)</button>
+        <div id="updateStatusResult"></div>
+    </div>
+
+    <script>
+        async function testPendingOrders() {
+            const result = document.getElementById('pendingOrdersResult');
+            result.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                const response = await fetch('/esang_delicacies/public/api/get_pending_orders.php');
+                const data = await response.json();
+                
+                if (data.ok) {
+                    result.innerHTML = `
+                        <p class="success">✓ Success! Found ${data.data.length} pending orders</p>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    `;
+                } else {
+                    result.innerHTML = `<p class="error">✗ API Error: ${data.error}</p>`;
+                }
+            } catch (error) {
+                result.innerHTML = `<p class="error">✗ Network Error: ${error.message}</p>`;
+            }
+        }
+        
+        async function testOrderDetails() {
+            const result = document.getElementById('orderDetailsResult');
+            result.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                const response = await fetch('/esang_delicacies/public/api/get_order_details.php?order_id=3');
+                const data = await response.json();
+                
+                if (data.ok) {
+                    result.innerHTML = `
+                        <p class="success">✓ Success! Got details for order #${data.data.order_id}</p>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    `;
+                } else {
+                    result.innerHTML = `<p class="error">✗ API Error: ${data.error}</p>`;
+                }
+            } catch (error) {
+                result.innerHTML = `<p class="error">✗ Network Error: ${error.message}</p>`;
+            }
+        }
+        
+        async function testUpdateStatus() {
+            const result = document.getElementById('updateStatusResult');
+            result.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                const response = await fetch('/esang_delicacies/public/api/update_order_status.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        orderId: 3,
+                        action: 'next'
+                    })
+                });
+                const data = await response.json();
+                
+                if (data.ok) {
+                    result.innerHTML = `
+                        <p class="success">✓ Success! Order status updated to: ${data.new_status}</p>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    `;
+                } else {
+                    result.innerHTML = `<p class="error">✗ API Error: ${data.error}</p>`;
+                }
+            } catch (error) {
+                result.innerHTML = `<p class="error">✗ Network Error: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

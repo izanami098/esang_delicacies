@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Delivered Status - Order Status</title>
+    <link rel="stylesheet" href="app/views/VCSS/Customer_CSS/customer_order_status.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .test-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .test-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 class="test-title">Test: Delivered Order Status with Feedback Transition</h1>
+        
+        <div style="text-align: center; margin-bottom: 20px;">
+            <button id="showRiderInfo" class="btn" style="margin-right: 10px; background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Show Rider Info</button>
+            <button id="showFeedback" class="btn" style="background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Show Feedback Form</button>
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="order-status-header">
+            <div class="progressbar">
+                <div class="progress" style="width: 100%;"></div>
+                <div class="progress-step active" data-title="order is placed"><i class="fas fa-box"></i></div>
+                <div class="progress-step active" data-title="need approval"><i class="fas fa-clipboard-check"></i></div>
+                <div class="progress-step active" data-title="Order is being prepared"><i class="fas fa-hourglass-half"></i></div>
+                <div class="progress-step active" data-title="order is out for delivery"><i class="fas fa-truck"></i></div>
+                <div class="progress-step active" data-title="delivered">
+                    <i class="fas fa-check"></i>
+                    <a href="#" class="view-details-link">view details</a>
+                </div>
+            </div>
+            
+            <button class="return-order-button">Return Order</button>
+        </div>
+        
+        <!-- Delivered Status Rider Information Section -->
+        <div class="delivered-rider-info" id="deliveredRiderInfo">
+            <div class="rider-info-card">
+                <div class="rider-profile-section">
+                    <div class="rider-profile-pic">
+                        <div class="profile-circle" id="riderProfileImage">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="plate-number-badge" id="riderPlateNumber">ABC-1234</div>
+                    </div>
+                </div>
+                <div class="rider-details-section">
+                    <div class="rider-info-item">
+                        <i class="fas fa-user"></i>
+                        <span id="riderName">Juan Dela Cruz</span>
+                    </div>
+                    <div class="rider-info-item">
+                        <i class="fas fa-phone"></i>
+                        <span id="riderPhone">+63 912 345 6789</span>
+                    </div>
+                    <div class="rider-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="customerLocation">123 Sample St., Barangay 172, North Caloocan, Metro Manila</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Feedback Section for Delivered Orders -->
+        <div class="delivery-feedback-section" id="deliveryFeedbackSection" style="display: none;">
+            <div class="feedback-header">
+                <h3>delivery is done? give us a feedback about it!</h3>
+            </div>
+            <div class="rating-grid">
+                <div class="rating-category">
+                    <div class="star-rating" data-category="delivery">
+                        <i class="fas fa-star" data-rating="1"></i>
+                        <i class="fas fa-star" data-rating="2"></i>
+                        <i class="fas fa-star" data-rating="3"></i>
+                        <i class="fas fa-star" data-rating="4"></i>
+                        <i class="fas fa-star" data-rating="5"></i>
+                    </div>
+                    <label>delivery</label>
+                </div>
+                <div class="rating-category">
+                    <div class="star-rating" data-category="taste">
+                        <i class="fas fa-star" data-rating="1"></i>
+                        <i class="fas fa-star" data-rating="2"></i>
+                        <i class="fas fa-star" data-rating="3"></i>
+                        <i class="fas fa-star" data-rating="4"></i>
+                        <i class="fas fa-star" data-rating="5"></i>
+                    </div>
+                    <label>Taste</label>
+                </div>
+                <div class="rating-category">
+                    <div class="star-rating" data-category="food_quality">
+                        <i class="fas fa-star" data-rating="1"></i>
+                        <i class="fas fa-star" data-rating="2"></i>
+                        <i class="fas fa-star" data-rating="3"></i>
+                        <i class="fas fa-star" data-rating="4"></i>
+                        <i class="fas fa-star" data-rating="5"></i>
+                    </div>
+                    <label>Food quality</label>
+                </div>
+                <div class="rating-category">
+                    <div class="star-rating" data-category="service">
+                        <i class="fas fa-star" data-rating="1"></i>
+                        <i class="fas fa-star" data-rating="2"></i>
+                        <i class="fas fa-star" data-rating="3"></i>
+                        <i class="fas fa-star" data-rating="4"></i>
+                        <i class="fas fa-star" data-rating="5"></i>
+                    </div>
+                    <label>service</label>
+                </div>
+            </div>
+            <div class="feedback-actions">
+                <button class="submit-feedback-btn" id="submitFeedbackBtn">Submit</button>
+                <button class="return-item-btn" id="returnItemBtn">Return</button>
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #e9f7ef; border-radius: 8px; border-left: 4px solid #27ae60;">
+            <h4 style="margin: 0 0 10px 0; color: #27ae60;">
+                <i class="fas fa-info-circle"></i> Test Information
+            </h4>
+            <p style="margin: 0; color: #155724;">
+                This shows how the customer order status page will look when the order status is "delivered" and a rider has been assigned. 
+                The design includes the rider's profile picture area, plate number, name, phone, and customer delivery location.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let feedbackRatings = {
+            delivery: 0,
+            taste: 0,
+            food_quality: 0,
+            service: 0
+        };
+        
+        // Toggle between rider info and feedback sections
+        document.getElementById('showRiderInfo').addEventListener('click', function() {
+            document.getElementById('deliveredRiderInfo').style.display = 'block';
+            document.getElementById('deliveryFeedbackSection').style.display = 'none';
+        });
+        
+        document.getElementById('showFeedback').addEventListener('click', function() {
+            document.getElementById('deliveredRiderInfo').style.display = 'none';
+            document.getElementById('deliveryFeedbackSection').style.display = 'block';
+        });
+        
+        // Star rating functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('fa-star') && e.target.closest('.star-rating')) {
+                const starRating = e.target.closest('.star-rating');
+                const category = starRating.dataset.category;
+                const rating = parseInt(e.target.dataset.rating);
+                
+                // Update feedback ratings
+                feedbackRatings[category] = rating;
+                
+                // Update star display
+                const stars = starRating.querySelectorAll('.fa-star');
+                stars.forEach((star, index) => {
+                    star.classList.remove('active', 'hovered');
+                    if (index < rating) {
+                        star.classList.add('active');
+                    }
+                });
+            }
+        });
+        
+        // Star hover effects
+        document.addEventListener('mouseover', function(e) {
+            if (e.target.classList.contains('fa-star') && e.target.closest('.star-rating')) {
+                const starRating = e.target.closest('.star-rating');
+                const rating = parseInt(e.target.dataset.rating);
+                const stars = starRating.querySelectorAll('.fa-star');
+                
+                stars.forEach((star, index) => {
+                    star.classList.remove('hovered');
+                    if (index < rating) {
+                        star.classList.add('hovered');
+                    }
+                });
+            }
+        });
+        
+        // Remove hover effects when mouse leaves star rating
+        document.addEventListener('mouseout', function(e) {
+            if (e.target.classList.contains('fa-star') && e.target.closest('.star-rating')) {
+                const starRating = e.target.closest('.star-rating');
+                const stars = starRating.querySelectorAll('.fa-star');
+                stars.forEach(star => {
+                    star.classList.remove('hovered');
+                });
+            }
+        });
+
+        // Submit feedback button
+        document.getElementById('submitFeedbackBtn').addEventListener('click', function() {
+            const categories = ['delivery', 'taste', 'food_quality', 'service'];
+            const missingRatings = categories.filter(cat => feedbackRatings[cat] === 0);
+            
+            if (missingRatings.length > 0) {
+                alert('Please provide ratings for all categories before submitting.');
+                return;
+            }
+            
+            alert('Thank you for your feedback! Ratings: ' + JSON.stringify(feedbackRatings));
+        });
+
+        // Return item button
+        document.getElementById('returnItemBtn').addEventListener('click', function() {
+            alert('Return button clicked - would open return reason modal');
+        });
+
+        // Test interaction: clicking on rider info items
+        document.querySelectorAll('.rider-info-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const text = this.querySelector('span').textContent;
+                const icon = this.querySelector('i').className;
+                alert(`Clicked: ${text}\nIcon: ${icon}`);
+            });
+        });
+
+        // Test return order button
+        document.querySelector('.return-order-button').addEventListener('click', function() {
+            alert('Return Order button clicked - would open return modal');
+        });
+
+        // Test view details link
+        document.querySelector('.view-details-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('View Details link clicked - would open rider details modal');
+        });
+        
+        // Auto-transition demo (show rider info first, then feedback after 5 seconds)
+        setTimeout(() => {
+            document.getElementById('showFeedback').click();
+        }, 5000);
+    </script>
+</body>
+</html>
